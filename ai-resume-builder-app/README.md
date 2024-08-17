@@ -19,3 +19,15 @@ Meilleur service d'authentification dans le marché
     https://clerk.com/
 ## Installation
    npm install @clerk/clerk-react
+
+## Strapi Backend
+##  Lien du site :
+    strapi.io
+## Installation
+    npx create-strapi-app@rc
+
+## Installer des dépendences
+    npm install --save-dev ajv
+
+## Run server
+    npm run develop
