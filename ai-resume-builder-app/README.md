@@ -31,3 +31,9 @@ Meilleur service d'authentification dans le marché
 
 ## Run server
     npm run develop
+
+# Générer un UUID
+##  Lien du site :    
+        https://www.npmjs.com/package/uuid
+##  Installation    
+        npm i uuid
