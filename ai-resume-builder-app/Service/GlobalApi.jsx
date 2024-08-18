@@ -13,6 +13,9 @@ const axiosClient = axios.create({
 
 const createNewResume = (data) => axiosClient.post('/user-resumes', data); // Créer un nouveau CV en envoyant les données à l'API Strapi
 
+const getUserResumes = (userEmail) => axiosClient.get('/user-resumes?filter[userEmail][$eq]='+userEmail); // Récupérer la liste des CV de l'utilisateur connecté
+
 export default {
-    createNewResume 
+    createNewResume,
+    getUserResumes 
 };

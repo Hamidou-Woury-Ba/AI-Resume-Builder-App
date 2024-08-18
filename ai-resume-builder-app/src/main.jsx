@@ -8,6 +8,7 @@ import path from 'path'
 import Home from './home/index.jsx'
 import Dashbord from './Dashbord/index.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
+import EditResume from './resume/[resume]/edit/index.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: '/dashbord',
         element: <Dashbord />,
+      },
+      {
+        path: '/dashbord/resume/:resumeId/edit', // Ajouter un paramètre dynamique pour l'ID du CV
+        element: <EditResume />,
       }
     ]
   },

@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button'
 import { v4 as uuidv4 } from 'uuid';
 import GlobalApi from './../../../Service/GlobalApi'
 import { useUser } from '@clerk/clerk-react'
+import { useNavigate } from 'react-router-dom'
 
 
 function AddResume() {
@@ -21,6 +22,7 @@ function AddResume() {
   const [resumeTitle, setResumeTitle] = useState()
   const { user } = useUser() // Récupérer les informations de l'utilisateur connecté
   const [loading, setLoading] = useState(false) // Définir l'état de chargement pour le bouton "Create"
+  const navigate = useNavigate() // Utiliser le hook useNavigate pour rediriger l'utilisateur vers une autre page
 
   // Créer un nouveau CV lorsqu'on clique sur le bouton "Create" dans la boîte de dialogue 
   const onCreate = async () => {
@@ -42,6 +44,7 @@ function AddResume() {
       console.log(resp)
       if (resp) {
         setLoading(false) // Désactiver l'état de chargement pour le bouton "Create"
+        navigate(`/dashbord/resume/${uuid}/edit`) // Rediriger l'utilisateur vers la page d'édition du CV après sa création
       }
     },
       (error) => {
