@@ -8,16 +8,20 @@ function Dashbord() {
 
   const user = useUser() // Récupérer les informations de l'utilisateur connecté
   const [resumeList, setResumeList] = useState([]) // Définir un état pour stocker la liste des CV de l'utilisateur connecté
+  const [dataLoaded, setDataLoaded] = useState(false) // Nouvel état pour vérifier si les données ont été chargées
 
-  // Appeler la fonction GetResumesList lorsqu'on charge le composant Dashbord pour récupérer la liste des CV de l'utilisateur connecté 
+  // Appeler la fonction GetResumesList lorsqu'on charge le composant Dashboard pour récupérer la liste des CV de l'utilisateur connecté 
   useEffect(() => {
-    user && GetResumesList() // Vérifier si l'utilisateur est connecté avant d'appeler la fonction GetResumesList
-  }, [user]) // Mettre à jour le composant lorsque l'utilisateur change
+    if (user && !dataLoaded) { // Vérifier si l'utilisateur est connecté et si les données n'ont pas encore été chargées
+      GetResumesList()
+    }
+  }, [user, dataLoaded]) // Mettre à jour le composant lorsque l'utilisateur change ou que les données sont chargées
 
   // Fonction pour récupérer la liste des CV de l'utilisateur connecté  
   const GetResumesList = () => {
      GlobalApi.getUserResumes(user?.primaryEmailAddress?.emailAddress).then(resp => { 
        setResumeList(resp.data.data) // Mettre à jour la liste des CV de l'utilisateur connecté en utilisant la réponse de l'API Strapi
+       setDataLoaded(true) // Indiquer que les données ont été chargées
      })
   }
 
