@@ -41,10 +41,10 @@ function AddResume() {
 
     // Appeler la fonction createNewResume de l'API GlobalApi pour créer un nouveau CV
     GlobalApi.createNewResume(data).then(resp => {
-      console.log(resp)
+      // console.log(resp.data.data.resumeId)
       if (resp) {
         setLoading(false) // Désactiver l'état de chargement pour le bouton "Create"
-        navigate(`/dashbord/resume/${uuid}/edit`) // Rediriger l'utilisateur vers la page d'édition du CV après sa création
+        navigate(`/dashbord/resume/${resp.data.data.resumeId}/edit`) // Rediriger l'utilisateur vers la page d'édition du CV après sa création
       }
     },
       (error) => {
